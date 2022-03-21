@@ -188,6 +188,15 @@ def plotPackedBeam(coordinates, angle, axis1, axis2, boresight,
     # beam_coordinate += [center[0] - 1, 0]
     # beam_coordinate = [0, center[1] - 1] + [1, -1]*beam_coordinate
 
+    # print out total beam area
+    nbeam = len(beam_coordinate)
+    if nbeam > 768:
+        print("A larger number of beams were generated: {0}".format(nbeam))
+        nbeam = 768
+
+    tot_area = nbeam * np.pi * tiling_meta["axis"][0] * tiling_meta["axis"][1]
+    print("Total beams generated: {0}".format(nbeam))
+    print("Total half-power area covered: {0:.3f} deg2".format(tot_area))
 
     for idx in range(len(beam_coordinate)):
         coord = beam_coordinate[idx]
@@ -222,6 +231,7 @@ def plotPackedBeam(coordinates, angle, axis1, axis2, boresight,
     if edge == True:
         shape = tiling_meta["shape"]
         if shape == "circle":
+            print("Circle area: {0:.3f} deg2".format(np.pi * tilingScale**2))
             edge = Circle(xy=gridCenter, radius = tilingScale/resolution,
                     alpha=0.1, linewidth = 3)
         elif shape == "ellipse":
