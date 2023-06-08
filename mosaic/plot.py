@@ -82,7 +82,7 @@ def plotPackedBeam(coordinates, angle, axis1, axis2, boresight,
 
     fig = plt.figure(figsize=(width/thisDpi, width/thisDpi), dpi=thisDpi)
 
-    axis = fig.add_subplot(111,aspect='equal', projection=wcs_properties)
+    axis = fig.add_subplot(111, aspect='equal', projection=wcs_properties)
 
     beam_coordinate = np.array(coordinates)/resolution
     # beam_coordinate += [center[0] - 1, 0]
@@ -96,7 +96,7 @@ def plotPackedBeam(coordinates, angle, axis1, axis2, boresight,
 
     tot_area = nbeam * np.pi * tiling_meta["axis"][0] * tiling_meta["axis"][1]
     print("Total beams generated: {0}".format(nbeam))
-    print("Total half-power area covered: {0:.3f} deg2".format(tot_area))
+    print("Total sky area covered at {0} power: {1:.3f} deg2".format(tiling_meta["axis"][3], tot_area))
 
     for idx in range(len(beam_coordinate)):
         coord = beam_coordinate[idx]
