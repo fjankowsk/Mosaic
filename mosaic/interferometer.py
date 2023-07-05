@@ -184,10 +184,8 @@ class InterferometryObservation:
 
         logger.info("beamshape: width1: {:.5g} arcsec, width2: {:.5g} arcsec, angle: {:.5g} degree"
                 .format(width1.arcsecond, width2.arcsecond, angle))
-        """
-        logger.info("beamshape: width1: {:.13g} arcsec, width2: {:.13g}, angle: {:.13g} arcsec in equatorial plane"
-                .format(width1.degree, width2.degree, angle))
-        """
+        beam_area = np.pi * width1.arcmin * width2.arcmin
+        logger.info("Half-power beam area: {:.5g} arcmin2".format(beam_area))
 
         self.beamshapeModel = beamshapeModel
         return self.beamAxis
